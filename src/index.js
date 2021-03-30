@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 
-var appInterface = require('./server/index');
-var debug = require('debug')('nodejs-practice:server');
-var http = require('http');
+const appInterface = require('./server/index');
+const debug = require('debug')('nodejs-practice:server');
+const http = require('http');
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3001');
 
 const appCore=appInterface.getInstance();
 const {app}=appCore;
 
 app.set('port', port);
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
