@@ -14,7 +14,6 @@ const port = normalizePort(process.env.PORT || '3001');
 // server.on('error', onError);
 // server.on('listening', onListening);
 
-
 let server
 appInterface.construct()
   .then((appCore)=>{
