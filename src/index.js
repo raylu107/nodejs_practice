@@ -20,8 +20,9 @@ appInterface.construct()
   .then((appCore)=>{
     const {app}=appCore;
     app.set('port', port);
-    server = http.createServer(app);
-    server.listen(port);
+    server=app.listen(port)
+    // server = http.createServer(app);
+    // server.listen(port);
     server.on('error', onError);
     server.on('listening', onListening);
   })
