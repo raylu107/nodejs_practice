@@ -39,11 +39,21 @@ class appFactory{
 let _instance = null;
 
 const appInterface={
-  getInstance:()=>{
+  getInstance: () => _instance,
+
+  construct:()=>{
     if (_.isNull(_instance)) {
-      const app=(_instance = new appFactory());
+      var app=(_instance = new appFactory());
     }
-    return _instance;
+    return new Promise(function(resolve,reject){
+      if(!_.isNull(app)){
+        resolve(app);
+      }else{
+        reject("error build app")
+      }
+      
+    })
+    
   }
 }
 

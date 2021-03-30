@@ -5,7 +5,7 @@ const appCore=require('../../server')
 
 module.exports=()=>{
   const {app}=appCore.getInstance();
-  app.get('user',
+  app.get('/user',
     async function(req, res, next) {
       res.status(200).send('getUser');
     }

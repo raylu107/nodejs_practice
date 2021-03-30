@@ -6,16 +6,25 @@ const http = require('http');
 
 const port = normalizePort(process.env.PORT || '3001');
 
-const appCore=appInterface.getInstance();
-const {app}=appCore;
+// const appCore=appInterface.construct();
+// const {app}=appCore;
 
-app.set('port', port);
+// server = http.createServer(app);
+// server.listen(port);
+// server.on('error', onError);
+// server.on('listening', onListening);
 
-const server = http.createServer(app);
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
 
+let server
+appInterface.construct()
+  .then((appCore)=>{
+    const {app}=appCore;
+    app.set('port', port);
+    server = http.createServer(app);
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+  })
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
