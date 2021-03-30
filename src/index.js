@@ -1,31 +1,15 @@
 #!/usr/bin/env node
 
-const appInterface = require('./server/index');
+const app = require('./server');
 const debug = require('debug')('nodejs-practice:server');
 const http = require('http');
 
-const port = normalizePort(process.env.PORT || '3001');
-
-// const appCore=appInterface.construct();
-// const {app}=appCore;
-
-// server = http.createServer(app);
-// server.listen(port);
-// server.on('error', onError);
-// server.on('listening', onListening);
-
-
-let server
-appInterface.construct()
-  .then((appCore)=>{
-    const {app}=appCore;
-    app.set('port', port);
-    server=app.listen(port)
-    // server = http.createServer(app);
-    // server.listen(port);
-    server.on('error', onError);
-    server.on('listening', onListening);
-  })
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+const server = http.createServer(app);
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
