@@ -1,9 +1,6 @@
-// const express = require('express');
-// const router = express.Router();
 const appCore=require('../../server')
-/* GET users listing. */
 
-module.exports=()=>{
+function getUser(){
   const {app}=appCore.getInstance();
   app.get('/user',
     async function(req, res, next) {
@@ -12,8 +9,4 @@ module.exports=()=>{
   )
 }
 
-// router.get('/user', async function(req, res, next) {
-//   res.status(200).send('getUser');
-// });
-
-// module.exports = router;
+module.exports = getUser;
